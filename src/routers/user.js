@@ -9,7 +9,7 @@ const { sendWelcomeEmail, sendCacelationEmail } = require('../emails/account')
 const prefix = '/users'
 const upload = multer({
   limits: {
-    fileSize: 100000
+    fileSize: 1000000
   },
   fileFilter(req, file, cb) {
     if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
@@ -82,6 +82,7 @@ router.post(`${prefix}/me/avatar`,
     res.send()
   },
   (error, req, res, next) => {
+    console.log(error)
     res.status(400).send({error: error.message})
   })
 
